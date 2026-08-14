@@ -5,4 +5,4 @@ G検定対策用の単語帳アプリです。
 
 ## 使い方
 以下のURLからアクセスできます。
-https://ユーザー名.github.io/リポジトリ名/
+https://hmaruoka0303.github.io/G検定 単語帳アプリ/
