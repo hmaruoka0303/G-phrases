@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G検定 単語帳</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  #card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 30px;
+    width: 85%;
+    margin: 0 auto;
+    font-size: 20px;
+    min-height: 150px;
+  }
+  button {
+    margin: 15px 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>G検定 単語帳</h1>
+
+<div id="card">
+  <p id="term">ここに用語が表示されます</p>
+</div>
+
+<div>
+  <button onclick="showAnswer()">答えを見る</button>
+  <button onclick="nextCard()">次の問題</button>
+</div>
+
+<script>
+const words = [
+  { term: "ディープラーニング", meaning: "多層のニューラルネットワークを用いた機械学習手法" },
+  { term: "過学習(オーバーフィッティング)", meaning: "訓練データに過度に適合し、未知データへの汎化性能が低くなる現象" },
+  { term: "強化学習", meaning: "行動の結果得られる報酬を最大化するように学習する手法" },
+];
+
+let currentIndex = 0;
+
+function pickRandom() {
+  currentIndex = Math.floor(Math.random() * words.length);
+  document.getElementById("term").innerText = words[currentIndex].term;
+}
+
+function showAnswer() {
+  document.getElementById("term").innerText = words[currentIndex].meaning;
+}
+
+function nextCard() {
+  pickRandom();
+}
+
+pickRandom();
+
+// PWA化のためのおまじない(Service Workerの登録)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>
